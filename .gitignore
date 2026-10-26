@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build output
+build/
+dist/
+release/
+frontend/build/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Generated reports and settings
+backend/reports/
+*.log
+
+# Editor / OS
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,121 @@
+{
+  "name": "red-dragon",
+  "productName": "Red Dragon",
+  "version": "1.0.0",
+  "description": "Red Dragon - Advanced Web Vulnerability Scanner by aegis cyber works",
+  "author": {
+    "name": "aegis cyber works",
+    "email": "aegis@example.com"
+  },
+  "license": "MIT",
+  "main": "desktop/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run backend\" \"npm run ui\"",
+    "backend": "python backend/desktop.py --no-token",
+    "backend:debug": "python backend/desktop.py",
+    "ui": "cd frontend && npm start",
+    "start": "electron .",
+    "build:ui": "cd frontend && npm run build",
+    "build:backend": "node scripts/build-backend.js",
+    "build": "npm run build:ui && npm run build:backend",
+    "dist": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win",
+    "dist:linux": "npm run build && electron-builder --linux",
+    "dist:dir": "npm run build:ui && electron-builder --dir",
+    "test:backend": "cd backend && python -m unittest discover -p \"test_*.py\" -v",
+    "test:desktop": "node scripts/test-desktop.js",
+    "test:packaging": "node scripts/test-packaging.js",
+    "make-icon": "python scripts/make_icon.py",
+    "install-all": "npm install && cd frontend && npm install"
+  },
+  "keywords": [
+    "red-dragon",
+    "vulnerability",
+    "scanner",
+    "security",
+    "penetration-testing",
+    "desktop"
+  ],
+  "build": {
+    "appId": "com.aegiscyberworks.reddragon",
+    "productName": "Red Dragon",
+    "copyright": "Copyright (c) 2026 aegis cyber works",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "desktop/**/*",
+      "build/icon.png",
+      "!**/*.map",
+      "!**/.eslintrc*"
+    ],
+    "extraResources": [
+      {
+        "from": "build/backend/red-dragon-backend",
+        "to": "backend",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "Red-Dragon-Setup-${version}.${ext}",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Red Dragon",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "deleteAppDataOnUninstall": false
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Development",
+      "icon": "build/icon.png",
+      "artifactName": "Red-Dragon-${version}.${ext}",
+      "desktop": {
+        "StartupWMClass": "Red Dragon"
+      }
+    },
+    "deb": {
+      "depends": [
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0"
+      ]
+    },
+    "appImage": {
+      "category": "Development"
+    },
+    "asar": true,
+    "compression": "maximum"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "electron": "^32.3.3",
+    "electron-builder": "^25.1.8"
+  }
+}
