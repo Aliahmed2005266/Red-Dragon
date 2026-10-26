@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🐉 Red Dragon
 
 **Red Dragon** - Professional Web Vulnerability Scanner by **aegis cyber works**
@@ -579,3 +580,6 @@ If you find this tool useful, please star the repository to show support!
 **Made with ❤️ by aegis cyber works for the security community**
 
 **Red Dragon** - Your comprehensive web application security companion.
+=======
+# Red-Dragon
+>>>>>>> bcaf45869fc7fe50e6683b0f6443a08986d8e52c
